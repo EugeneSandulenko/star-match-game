@@ -4,13 +4,37 @@ import PlayNumber from './PlayNumber';
 import utils from '../math-utils';
 import PlayAgain from './PlayAgain';
 
-class Player {
-  constructor(name, score, tries) {
-    this.name = name;
-    this.score = score;
-    this.tries = tries;
-  }
-}
+const Leadership = (props) => {
+  return (
+    <>
+      Leadership board:
+      <div>
+        <div className="leftDiv">
+          <b>Name</b>
+        </div>
+        <div className="leftDiv">
+          <b>Score</b>
+        </div>
+        <div className="leftDiv">
+          <b>Tries</b>
+        </div>
+      </div>
+      {props.players.map((p) => (
+        <div key={'main' + p}>
+          <div className="leftDiv" key={'name' + p}>
+            {p.name}
+          </div>
+          <div className="leftDiv" key={'score' + p}>
+            {p.score}
+          </div>
+          <div className="leftDiv" key={'tries' + p}>
+            {p.tries}
+          </div>
+        </div>
+      ))}
+    </>
+  );
+};
 
 const useGameState = () => {
   const [stars, setStars] = useState(utils.random(1, 9));
@@ -49,7 +73,6 @@ const Game = (props) => {
     secondsLeft,
     setGameState,
   } = useGameState();
-  const [players, setPlayers] = useState([new Player('Eugene', 5, 1)]);
 
   const candidatesAreWrong = utils.sum(candidateNums) > stars;
   const gameStatus =
@@ -80,6 +103,10 @@ const Game = (props) => {
     setGameState(newCandidateNums);
   };
 
+  const playAgain = (name) => {
+    props.startNewGame(name, secondsLeft);
+  };
+
   return (
     <div className="game">
       <div className="help">
@@ -88,7 +115,7 @@ const Game = (props) => {
       <div className="body">
         <div className="left">
           {gameStatus !== 'active' ? (
-            <PlayAgain onClick={props.startNewGame} gameStatus={gameStatus} />
+            <PlayAgain onClick={playAgain} gameStatus={gameStatus} />
           ) : (
             <StarsDisplay count={stars} />
           )}
@@ -105,16 +132,7 @@ const Game = (props) => {
         </div>
       </div>
       <div className="timer">Time Remaining: {secondsLeft}</div>
-      <div>
-        Leadership board:
-        {players.map((p) => (
-          <>
-            <div key={'name' + p}>{p.name}</div>
-            <div key={'score' + p}>{p.score}</div>
-            <div key={'tries' + p}>{p.tries}</div>
-          </>
-        ))}
-      </div>
+      <Leadership players={props.players} />
     </div>
   );
 };
