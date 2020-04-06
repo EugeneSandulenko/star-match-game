@@ -14,21 +14,22 @@ const Leadership = (props) => {
             <div className="divTableHead">Name</div>
             <div className="divTableHead">Score</div>
             <div className="divTableHead">Tries</div>
-        </div>
-        <div className="divTableBody">
-          {props.players.map((p) => (
-            <div key={'main' + p.name}>
-              <div className="leftDiv" key={'name' + p.name}>
-                {p.name}
+          </div>
+          <div className="divTableBody">
+            {props.players.map((p) => (
+              <div key={'main' + p.name}>
+                <div className="leftDiv" key={'name' + p.name}>
+                  {p.name}
+                </div>
+                <div className="leftDiv" key={'score' + p.name}>
+                  {p.score}
+                </div>
+                <div className="leftDiv" key={'tries' + p.name}>
+                  {p.tries}
+                </div>
               </div>
-              <div className="leftDiv" key={'score' + p.name}>
-                {p.score}
-              </div>
-              <div className="leftDiv" key={'tries' + p.name}>
-                {p.tries}
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </>
