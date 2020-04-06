@@ -11,13 +11,28 @@ class Player {
 
 const StarMatch = () => {
   const [gameId, setGameId] = useState(1);
-  const [players, setPlayers] = useState([new Player('Eugene', 5, 1)]);
+  const [players, setPlayers] = useState([]);
+
+  const updateledershipboard = (name, secondsLeft) => {
+    const existingRecords = players.filter((p) => p.name == name);
+    const newPlayer =
+      existingRecords.length > 0
+        ? new Player(
+          name,
+          Math.max(existingRecords[0].score, secondsLeft),
+          existingRecords[0].tries + 1
+        )
+        : new Player(name, secondsLeft, 1);
+
+    return players
+      .filter((p) => p.name != name)
+      .concat(newPlayer)
+      .sort((a, b) => b.score - a.score);
+  };
 
   const resetGame = (name, secondsLeft) => {
-    setPlayers(players.concat(new Player(name, secondsLeft, 1)));
+    setPlayers(updateledershipboard(name,secondsLeft));
     setGameId(gameId + 1);
-    // eslint-disable-next-line no-console
-    console.log(name, secondsLeft);
   };
 
   return <Game key={gameId} players={players} startNewGame={resetGame} />;
