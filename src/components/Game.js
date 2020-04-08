@@ -54,7 +54,7 @@ const useGameState = () => {
       setCandidateNums(newCandidateNums);
     } else {
       const newAvailableNums = availableNums.filter(
-        (n) => !newCandidateNums.includes(n)
+        (n) => !newCandidateNums.includes(n),
       );
       setStars(utils.randomSumIn(newAvailableNums, 9));
       setAvailableNums(newAvailableNums);

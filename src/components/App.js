@@ -9,10 +9,10 @@ class Player {
   }
 }
 
-const getSavedPayers = ()=>{
+const getSavedPayers = () => {
   try {
     return JSON.parse(window.localStorage.players);
-  }catch (e){ 
+  } catch (e) {
     return [];
   }
 };
@@ -28,7 +28,7 @@ const StarMatch = () => {
         ? new Player(
           name,
           Math.max(existingRecords[0].score, secondsLeft),
-          existingRecords[0].tries + 1
+          existingRecords[0].tries + 1,
         )
         : new Player(name, secondsLeft, 1);
 
