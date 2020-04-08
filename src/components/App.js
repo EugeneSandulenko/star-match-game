@@ -9,33 +9,20 @@ class Player {
   }
 }
 
-const StarMatch = () => {
-  let savedPayers =[] ;
+const getSavedPayers = ()=>{
   try {
-    if(window.localStorage.players != undefined) 
-    {
-      savedPayers = JSON.parse(window.localStorage.players);
-    }
+    return JSON.parse(window.localStorage.players);
   }catch (e){ 
-    // eslint-disable-next-line no-console
-    console.log(e);
+    return [];
   }
+};
 
+const StarMatch = () => {
   const [gameId, setGameId] = useState(1);
-  const [players, setPlayers] = useState(savedPayers);
+  const [players, setPlayers] = useState(getSavedPayers());
 
   const updateledershipboard = (name, secondsLeft) => {
-    let existingRecords = [];
-
-    try{
-      existingRecords = JSON.parse(window.localStorage.players)
-        .filter((p) => p.name == name);
-    }
-    catch(e){
-      // eslint-disable-next-line no-console
-      console.log(e);
-    }
-
+    const existingRecords = getSavedPayers().filter((p) => p.name == name);
     const newPlayer =
       existingRecords.length > 0
         ? new Player(
@@ -45,13 +32,10 @@ const StarMatch = () => {
         )
         : new Player(name, secondsLeft, 1);
 
-    const newPayers = players
+    return players
       .filter((p) => p.name != name)
       .concat(newPlayer)
       .sort((a, b) => b.score - a.score);
-
-    window.localStorage.setItem('players',JSON.stringify(newPayers));
-    return newPayers;
   };
 
   const resetGame = (name, secondsLeft) => {
