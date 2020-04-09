@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test play number when status is available then button is lightgray 1`] = `
+<button
+  className="number"
+  onClick={[Function]}
+  style={
+    Object {
+      "backgroundColor": "lightgray",
+    }
+  }
+>
+  1
+</button>
+`;
+
+exports[`Test play number when status is invalid then button is lightgray 1`] = `
+<button
+  className="number"
+  onClick={[Function]}
+  style={
+    Object {
+      "backgroundColor": undefined,
+    }
+  }
+>
+  1
+</button>
+`;
