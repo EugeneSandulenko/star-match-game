@@ -2,7 +2,7 @@ import React from 'react';
 
 class PlayAgain extends React.Component {
   state ={
-    name : 'Eugene',
+    name : '',
   };
 
   render() {

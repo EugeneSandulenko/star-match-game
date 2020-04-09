@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlayAgain renders PlayAgain correctly 1`] = `
+<div
+  className="game-done"
+>
+  <div
+    className="message"
+    style={
+      Object {
+        "color": "green",
+      }
+    }
+  >
+    Nice
+  </div>
+  <label>
+    Name
+    <input
+      name="name"
+      onChange={[Function]}
+      placeholder="Enter your name"
+      type="text"
+      value=""
+    />
+  </label>
+  <br />
+  <button
+    onClick={[Function]}
+  >
+    Play Again
+  </button>
+</div>
+`;
