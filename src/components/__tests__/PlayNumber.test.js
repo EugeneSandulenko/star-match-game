@@ -36,6 +36,14 @@ describe('Test play number', () => {
     expect(text).toEqual(String(number));
   });
 
+  it('when status is available then backgroundColor is lightgray', () => {
+    const tree = renderer.create(<PlayNumber status="available" number={1} />);
+    const instance = tree.root;
+    const button = instance.findByType('button');
+
+    expect(button.props['style']['backgroundColor']).toEqual('lightgray');
+  });
+
   it('when status is available then button is rendered correctly', () => {
     const tree = renderer
       .create(<PlayNumber status="available" number={1} />)
