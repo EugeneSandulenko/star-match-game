@@ -1,6 +1,8 @@
 import PlayNumber from '../PlayNumber';
 import renderer from 'react-test-renderer';
 import React from 'react';
+import utils from '../../math-utils';
+
 /* eslint-disable no-console */
 describe('Test play number', () => {
   beforeEach(() => {
@@ -21,12 +23,8 @@ describe('Test play number', () => {
   //     setTimeout(done, 100);
   //   });
 
-  function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-  }
-
   it('when number is provided then button display the number', () => {
-    const number = getRandomInt(9) + 1;
+    const number = utils.random(1, 9);
     const tree = renderer.create(
       <PlayNumber status="available" number={number} />,
     );
