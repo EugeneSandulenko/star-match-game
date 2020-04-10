@@ -1,5 +1,3 @@
-import React from "react";
-
 const utils = {
   // Sum an array
   sum: (arr) => arr.reduce((acc, curr) => acc + curr, 0),
