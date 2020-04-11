@@ -44,6 +44,30 @@ describe('Test play number', () => {
     expect(button.props['style']['backgroundColor']).toEqual('lightgray');
   });
 
+  it('when status is used then backgroundColor is lightgreen', () => {
+    const tree = renderer.create(<PlayNumber status="used" number={1} />);
+    const instance = tree.root;
+    const button = instance.findByType('button');
+
+    expect(button.props['style']['backgroundColor']).toEqual('lightgreen');
+  });
+
+  it('when status is wrong then backgroundColor is lightcoral', () => {
+    const tree = renderer.create(<PlayNumber status="wrong" number={1} />);
+    const instance = tree.root;
+    const button = instance.findByType('button');
+
+    expect(button.props['style']['backgroundColor']).toEqual('lightcoral');
+  });
+
+  it('when status is candidate then backgroundColor is deepskyblue', () => {
+    const tree = renderer.create(<PlayNumber status="candidate" number={1} />);
+    const instance = tree.root;
+    const button = instance.findByType('button');
+
+    expect(button.props['style']['backgroundColor']).toEqual('deepskyblue');
+  });
+
   it('when status is available then button is rendered correctly', () => {
     const tree = renderer
       .create(<PlayNumber status="available" number={1} />)
